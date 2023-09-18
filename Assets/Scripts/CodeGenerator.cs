@@ -27,7 +27,7 @@ public class CodeGenerator : MonoBehaviour
                 }
                 else
                 {
-                    square = "FRE";
+                    square = "   ";
                 }
                 
             }
@@ -40,7 +40,7 @@ public class CodeGenerator : MonoBehaviour
                 square += " "; // Add a space to the end of the square if its length is 2
             }
 
-            displayText.text += square;
+            displayText.text += "<mspace=.7em>" + square;
 
             if ((i + 1) % 5 == 0 && i != 0)
             {
