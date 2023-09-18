@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Air : MonoBehaviour
 {
-    public float bounceForce = 10f;
+    private float bounceForce = 15f;
     // Start is called before the first frame update
     void Start()
     {
