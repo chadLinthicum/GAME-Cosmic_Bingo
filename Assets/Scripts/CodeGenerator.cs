@@ -21,26 +21,27 @@ public class CodeGenerator : MonoBehaviour
             {
                 randomLetter = (int)Random.Range(0f, 5f);
                 randomInt = (int)Random.Range(1f, 76f);
-                if(i != 12)
+                if (i != 12)
                 {
-                    square = SPACE[randomLetter] + randomInt;
+                    //square = SPACE[randomLetter] + randomInt;
+                    square = randomInt.ToString();
                 }
                 else
                 {
-                    square = "   ";
+                    square = "__";
                 }
-                
+
             }
             while (generatedSquares.Contains(square));
 
             generatedSquares.Add(square);
 
-            if (square.Length == 2)
+            if (square.Length < 2)
             {
-                square += " "; // Add a space to the end of the square if its length is 2
+                square = "0" + square; // Add a space to the end of the square if its length is 2
             }
 
-            displayText.text += "<mspace=.7em>" + square;
+            displayText.text += square;
 
             if ((i + 1) % 5 == 0 && i != 0)
             {
