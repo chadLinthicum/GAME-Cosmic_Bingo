@@ -5,52 +5,41 @@ using TMPro;
 
 public class CodeGenerator : MonoBehaviour
 {
-    string[] SPACE = { "S", "P", "A", "C", "E" };
     public TextMeshProUGUI displayText;
+    string[] numbers = new string[25];
+
+
 
     void Start()
     {
-        int randomLetter;
-        int randomInt;
-        string square;
-        HashSet<string> generatedSquares = new HashSet<string>();
-
-        for (int i = 0; i < 25; i++)
+        for (int i = 0; i < numbers.Length; i++)
         {
-            do
+            int randomInt = Random.Range(00, 75);
+            string randomIntString = randomInt.ToString();
+
+            if(randomIntString.Length < 2)
             {
-                randomLetter = (int)Random.Range(0f, 5f);
-                randomInt = (int)Random.Range(1f, 76f);
-                if (i != 12)
+                randomIntString = randomInt.ToString("D2");
+            }
+
+            // Check for duplicates in the previous elements
+            for (int j = 0; j < i; j++)
+            {
+                if (numbers[j].ToString() == randomIntString)
                 {
-                    //square = SPACE[randomLetter] + randomInt;
-                    square = randomInt.ToString();
+                    // Duplicate found, generate a new random number
+                    randomInt = Random.Range(0, 75);
+                    randomIntString = randomInt.ToString();
+                    // Restart the loop to recheck for duplicates
+                    j = -1;
                 }
-                else
-                {
-                    square = "__";
-                }
-
-            }
-            while (generatedSquares.Contains(square));
-
-            generatedSquares.Add(square);
-
-            if (square.Length < 2)
-            {
-                square = "0" + square; // Add a space to the end of the square if its length is 2
             }
 
-            displayText.text += square;
-
-            if ((i + 1) % 5 == 0 && i != 0)
-            {
-                displayText.text += "\n"; // Append a line break after every 5th instance
-            }
-            else
-            {
-                displayText.text += " "; // Append a space between each instance
-            }
+            numbers[i] = randomIntString;
+            Debug.Log("Index: " + i + ", Value: " + numbers[i]);
         }
+
+        numbers[12] = "__";
+        displayText.text = string.Join(" ", numbers);
     }
 }
