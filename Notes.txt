@@ -1,0 +1,9 @@
+- Creating random number from 1-75
+- Storing those numbers in an array
+- Get the index values
+
+
+Create an array with length of 25
+generate a unique random number from 00-75
+Ensure that number does not exist in the array
+push into array
