@@ -305,6 +305,7 @@ Transform:
   m_Children:
   - {fileID: 1930689940}
   - {fileID: 1775561259}
+  - {fileID: 1042203105}
   - {fileID: 1432395544}
   - {fileID: 1259876792}
   - {fileID: 1957212646}
@@ -559,6 +560,8 @@ MonoBehaviour:
   btn_play: {fileID: 1842252258}
   balls: {fileID: 1930689939}
   spawnLocation: {fileID: 1775561253}
+  stopLocation: {fileID: 1042203105}
+  speed: 0.25
 --- !u!1001 &752339700
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -703,6 +706,37 @@ Transform:
   - {fileID: 1054705960}
   - {fileID: 1799909402}
   m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1042203104
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1042203105}
+  m_Layer: 0
+  m_Name: Stop Location
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1042203105
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1042203104}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1.179, y: -1.279, z: -2.01}
+  m_LocalScale: {x: 1.3459746, y: 1.3459746, z: 1.3459746}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 208984350}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1054705958
 GameObject:

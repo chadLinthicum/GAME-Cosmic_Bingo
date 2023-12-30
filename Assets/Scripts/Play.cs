@@ -10,31 +10,23 @@ public class Play : MonoBehaviour
     public GameObject btn_play;
     public GameObject balls;
     public GameObject spawnLocation;
+    public Transform stopLocation;
+    public float speed = .5f;
 
     private bool cam1Active = true;
 
     public void Start()
     {
-        Debug.Log("foo");
         
     }
     public void OnButtonClick()
     {
         if (cam1Active) {
-            //cam1.SetActive(false);
-            //cam2.SetActive(true);
-            //cam1Active = false;
-            //btn_play.SetActive(false);
-            LogChildren(balls.transform);
-            Transform firstChild = balls.transform.GetChild(0);
-            firstChild.position = spawnLocation.transform.position;
-            firstChild.rotation = Quaternion.identity;
-            firstChild.localScale = spawnLocation.transform.localScale;
-            Rigidbody childRigidbody = firstChild.GetComponent<Rigidbody>();
-            if (childRigidbody != null)
-            {
-                childRigidbody.isKinematic = true;
-            }
+            cam1.SetActive(false);
+            cam2.SetActive(true);
+            cam1Active = false;
+            btn_play.SetActive(false);
+            MoveChildBall();
         }
         else
         {
@@ -45,12 +37,28 @@ public class Play : MonoBehaviour
         
     }
 
-    private void LogChildren(Transform parent)
+    private void MoveChildBall()
     {
-        foreach (Transform child in parent)
+        Transform firstChild = balls.transform.GetChild(0);
+        firstChild.position = spawnLocation.transform.position;
+        firstChild.rotation = Quaternion.identity;
+        firstChild.localScale = spawnLocation.transform.localScale;
+        Rigidbody childRigidbody = firstChild.GetComponent<Rigidbody>();
+        if (childRigidbody != null)
         {
-            Debug.Log(child.name);
-            LogChildren(child);
+            childRigidbody.isKinematic = true;
+        }
+        StartCoroutine(MoveToStopLocation());
+    }
+
+    private System.Collections.IEnumerator MoveToStopLocation()
+    {
+        Transform firstChild = balls.transform.GetChild(0);
+        while (firstChild.position != stopLocation.position)
+        {
+            // Move the object towards the stop location gradually
+            firstChild.position = Vector3.MoveTowards(firstChild.position, stopLocation.position, speed * Time.deltaTime);
+            yield return null;
         }
     }
 }
